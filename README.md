@@ -59,36 +59,36 @@ Customize the dataset search page template
 Create the directory [ckanext/datesearch/templates/package/](ckanext/datesearch/templates/package/),
 and open the file [ckanext/datesearch/templates/package/search.html](ckanext/datesearch/templates/package/search.html):
 
-  {% ckan_extends %}
+    {% ckan_extends %}
 
-  {% block secondary_content %}
-    {% resource 'ckanext-datesearch/moment.js' %}
-    {% resource 'ckanext-datesearch/daterangepicker.js' %}
-    {% resource 'ckanext-datesearch/daterangepicker-bs3.css' %}
-    {% resource 'ckanext-datesearch/daterangepicker-module.js' %}
+    {% block secondary_content %}
+      {% resource 'ckanext-datesearch/moment.js' %}
+      {% resource 'ckanext-datesearch/daterangepicker.js' %}
+      {% resource 'ckanext-datesearch/daterangepicker-bs3.css' %}
+      {% resource 'ckanext-datesearch/daterangepicker-module.js' %}
 
-    <section class="module module-narrow module-shallow">
-      <h2 class="module-heading">
-        <i class="icon-medium icon-filter"></i>
-          Date
-          <a href="" class="action">Clear</a>
-        </h2>
-        <fieldset class="module-content">
-          <div class="control-group">
-            <label class="control-label" for="daterange">Date modified</label>
-            <div class="controls">
-              <div class="input-prepend">
-                <span class="add-on"><i class="icon-calendar"></i></span>
-                <input type="text" style="width: 150px" name="daterange"
-                      id="daterange" data-module="daterangepicker-module" />
+      <section class="module module-narrow module-shallow">
+        <h2 class="module-heading">
+          <i class="icon-medium icon-filter"></i>
+            Date
+            <a href="" class="action">Clear</a>
+          </h2>
+          <fieldset class="module-content">
+            <div class="control-group">
+              <label class="control-label" for="daterange">Date modified</label>
+              <div class="controls">
+                <div class="input-prepend">
+                  <span class="add-on"><i class="icon-calendar"></i></span>
+                  <input type="text" style="width: 150px" name="daterange"
+                        id="daterange" data-module="daterangepicker-module" />
+                </div>
               </div>
             </div>
-          </div>
-        </fieldset>
-      </section>
+          </fieldset>
+        </section>
 
-    {{ super() }}
-  {% endblock %}
+      {{ super() }}
+    {% endblock %}
 
 This is Jinja templates that overrides the [templates/package/search.html](https://github.com/okfn/ckan/blob/release-v2.0.2/ckan/templates/package/search.html)
 template in CKAN core:
@@ -103,10 +103,10 @@ template in CKAN core:
   `moment.js` file from our `fanstatic` directory into this page. We load a
   number of custom resource files in our template:
 
-      {% resource 'ckanext-datesearch/moment.js' %}
-      {% resource 'ckanext-datesearch/daterangepicker.js' %}
-      {% resource 'ckanext-datesearch/daterangepicker-bs3.css' %}
-      {% resource 'ckanext-datesearch/daterangepicker-module.js' %}
+        {% resource 'ckanext-datesearch/moment.js' %}
+        {% resource 'ckanext-datesearch/daterangepicker.js' %}
+        {% resource 'ckanext-datesearch/daterangepicker-bs3.css' %}
+        {% resource 'ckanext-datesearch/daterangepicker-module.js' %}
 
 * `{{ super() }}` means to insert the contents of the block from the core
   template.
@@ -115,8 +115,8 @@ template in CKAN core:
   stuff that we're adding to the top of the sidebar. Most of the code is just
   to make it fit into the CKAN theme. The important bit is:
 
-      <input type="text" style="width: 150px" name="daterange"
-             id="daterange" data-module="daterangepicker-module" />
+        <input type="text" style="width: 150px" name="daterange"
+               id="daterange" data-module="daterangepicker-module" />
 
   Adding a `data-module="daterangepicker-module"` attribute to an HTML element
   tells CKAN to find the `daterangepicker-module` JavaScript module and load
