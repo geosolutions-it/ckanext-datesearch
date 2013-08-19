@@ -16,16 +16,16 @@ The plugin needs to implement `IConfigurable` and add register a template
 directory and a Fanstatic library directory with CKAN.
 [ckanext/datesearch/plugin.py](ckanext/datesearch/plugin.py):
 
-  import ckan.plugins as plugins
-  import ckan.plugins.toolkit as toolkit
+    import ckan.plugins as plugins
+    import ckan.plugins.toolkit as toolkit
 
 
-  class DateSearchPlugin(plugins.SingletonPlugin):
-      plugins.implements(plugins.IConfigurer)
+    class DateSearchPlugin(plugins.SingletonPlugin):
+        plugins.implements(plugins.IConfigurer)
 
-      def update_config(self, config):
-          toolkit.add_template_directory(config, 'templates')
-          toolkit.add_resource('fanstatic', 'ckanext-datesearch')
+        def update_config(self, config):
+            toolkit.add_template_directory(config, 'templates')
+            toolkit.add_resource('fanstatic', 'ckanext-datesearch')
 
 Also create the directories
 [ckanext/datesearch/templates/](ckanext/datesearch/templates/) and
