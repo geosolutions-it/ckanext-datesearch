@@ -1,0 +1,30 @@
+{% ckan_extends %}
+
+{% block secondary_content %}
+  {% resource 'ckanext-datesearch/moment.js' %}
+  {% resource 'ckanext-datesearch/daterangepicker.js' %}
+  {% resource 'ckanext-datesearch/daterangepicker-bs3.css' %}
+  {% resource 'ckanext-datesearch/daterangepicker-module.js' %}
+
+  <section class="module module-narrow module-shallow">
+    <h2 class="module-heading">
+      <i class="icon-medium icon-filter"></i>
+        Date
+        <a href="" class="action">Clear</a>
+      </h2>
+      <fieldset class="module-content">
+        <div class="control-group">
+          <label class="control-label" for="daterange">Date modified</label>
+          <div class="controls">
+            <div class="input-prepend">
+              <span class="add-on"><i class="icon-calendar"></i></span>
+              <input type="text" style="width: 150px" name="daterange"
+                     id="daterange" data-module="daterangepicker-module" />
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </section>
+
+  {{ super() }}
+{% endblock %}
