@@ -5,7 +5,7 @@ CKAN supports date-range searches out of the box. For example, to search for
 datasets that were modified in August 2013, you can simply type this into the
 search bar:
 
-  metadata_modified:[2013-08-01T00:00:00Z TO 2013-08-31T00:00:00Z]
+    metadata_modified:[2013-08-01T00:00:00Z TO 2013-08-31T00:00:00Z]
 
 Here's the result of that search on datahub.io: <http://datahub.io/dataset?q=metadata_modified%3A[2013-08-01T00%3A00%3A00Z+TO+2013-08-31T00%3A00%3A00Z]>.
 
