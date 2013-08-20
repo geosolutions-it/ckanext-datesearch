@@ -144,7 +144,7 @@ template in CKAN core:
 Implement the `daterangepicker-module` JavaScript module
 --------------------------------------------------------
 
-CKAN uses _JavaScript modules_ to load snippers of JavaScript into the page.
+CKAN uses _JavaScript modules_ to load snippets of JavaScript into the page.
 When we added the `data-module="daterangepicker-module"` attribute to our
 `<input>` tag in our template earlier, we told CKAN to include the
 `daterangepicker-module` JavaScript module into our page. We now need to
@@ -205,7 +205,7 @@ widget to the `<input>` tag with `id="daterange"`:
 
 Finally, bootstrap-daterangepicker supports a *callback function* that will
 be called after the user selects two dates. We use the callback function to add
-the selected start and end dates to a couple of hidden `<input>` tags, and
+the selected start and end dates to the hidden `<input>` tags, and
 submit the form:
 
     function(start, end) {
