@@ -27,6 +27,8 @@
         this.timePicker12Hour = true;
         this.ranges = {};        
         this.opens = 'right';
+		
+		this.options = options;
 
         this.buttonClasses = ['btn', 'btn-small'];
         this.applyClass = 'btn-success';
@@ -89,14 +91,16 @@
                   '<div class="range_inputs">' +
                     '<div class="daterangepicker_start_input" style="float: left">' +
                       '<label for="daterangepicker_start">' + this.locale.fromLabel + '</label>' +
-                      '<input class="input-mini" type="text" name="daterangepicker_start" value="" disabled="disabled" />' +
+                      '<input id="input-time-from" class="input-mini" type="text" name="daterangepicker_start" value="" disabled="disabled" style="cursor: pointer;"/>' +
                     '</div>' +
                     '<div class="daterangepicker_end_input" style="float: left; padding-left: 11px">' +
                       '<label for="daterangepicker_end">' + this.locale.toLabel + '</label>' +
-                      '<input class="input-mini" type="text" name="daterangepicker_end" value="" disabled="disabled" />' +
-                    '</div>' +
-                    '<button class="' + this.applyClass + ' applyBtn" disabled="disabled">' + this.locale.applyLabel + '</button>&nbsp;' +
-                    '<button class="' + this.cancelClass + ' cancelBtn">' + this.locale.cancelLabel + '</button>' +
+                      '<input id="input-time-to" class="input-mini" type="text" name="daterangepicker_end" value="" disabled="disabled" style="cursor: pointer;"/>' +
+                    '</div>' + '<br/>' + '<br/>' + '<br/>' + '<br/>' + 
+					'<div>' +
+						'<button class="' + this.applyClass + ' applyBtn" disabled="disabled">' + this.locale.applyLabel + '</button>&nbsp;' +
+						'<button class="' + this.cancelClass + ' cancelBtn">' + this.locale.cancelLabel + '</button>' +
+					'</div>' +
                   '</div>' +
                 '</div>' +
               '</div>';
@@ -213,6 +217,10 @@
 
             if (typeof options.timePicker12Hour == 'boolean') {
                 this.timePicker12Hour = options.timePicker12Hour;
+            }
+			
+			if (typeof options.dateTimeFormat == 'string') {
+                this.format = options.dateTimeFormat;
             }
 
         }
@@ -400,6 +408,19 @@
 
             $(document).on('mousedown', $.proxy(this.hide, this));
             this.element.trigger('shown', {target: e.target, picker: this});
+			
+			// /////////////////////////////////////////////
+			// Enlarge the start/end input field if needed 
+			// by the dateTime format.
+			// /////////////////////////////////////////////
+			if(this.options.dateTimeFormat.length > 10){
+				$('#input-time-from').css({
+					'width': '105px'
+				});
+				$('#input-time-to').css({
+					'width': '105px'
+				});
+			}
         },
 
         hide: function (e) {

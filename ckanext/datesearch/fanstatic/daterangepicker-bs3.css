@@ -23,7 +23,7 @@
 }
 
 .daterangepicker .ranges {
-  width: 160px;
+  /*width: 160px;*/
   text-align: left;
 }
 
@@ -239,6 +239,6 @@
 }
 
 .daterangepicker select.hourselect, .daterangepicker select.minuteselect, .daterangepicker select.ampmselect {
-  width: 50px;
+  width: 60px;
   margin-bottom: 0;
 }

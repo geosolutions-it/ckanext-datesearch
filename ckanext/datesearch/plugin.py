@@ -1,6 +1,8 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
+import logging
 
+log = logging.getLogger(__name__)
 
 class DateSearchPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
@@ -24,7 +26,10 @@ class DateSearchPlugin(plugins.SingletonPlugin):
         # Add a date-range query with the selected start and end dates into the
         # Solr facet queries.
         fq = search_params['fq']
-        fq = '{fq} +metadata_modified:[{start_date} TO {end_date}]'.format(
+        fq = '{fq} +(extras_temporal_extent_begin:[{start_date} TO {end_date}] OR extras_temporal_extent_end:[{start_date} TO {end_date}] OR extras_temporal_extent_instant:[{start_date} TO {end_date}])'.format(
             fq=fq, start_date=start_date, end_date=end_date)
         search_params['fq'] = fq
+		
+	#log.info('search_params: %r', fq)
+		
         return search_params
