@@ -19,9 +19,17 @@ overwritten.
    Using the provided one in this plugin:
 
 		./lib/search/index.py
+		
+3. Restart SOLR:
 
-3. Reharvest data in order to apply new names for temporal fields 
+	/etc/init.d/solr restart
 
-4. If you need to reindex, from the 'ckan' user run this command:
+4. Restart CKAN:
+
+	service supervisord restart
+	
+4. Reharvest data in order to apply new names for temporal fields. 
+
+5. If you need to reindex, from the 'ckan' user run this command:
 
 		paster --plugin=ckan search-index rebuild  -c /etc/ckan/default/production.ini
