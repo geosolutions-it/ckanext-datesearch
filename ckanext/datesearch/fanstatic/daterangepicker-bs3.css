@@ -242,3 +242,15 @@
   width: 60px;
   margin-bottom: 0;
 }
+
+.calendar-label-left{
+	width: 45px;
+	font-weight:bold;
+	margin: 0 auto;
+}
+
+.calendar-label-right{
+	width: 20px;
+	font-weight:bold;
+	margin: 0 auto;
+}

@@ -15,7 +15,8 @@ this.ckan.module('daterangepicker-module', function($, _) {
                 startDate: moment().subtract('days', 31),
                 endDate: moment(),
                 showDropdowns: false,
-                timePicker: true
+                timePicker: true,
+				timePicker12Hour: false
 		},
         initialize: function() {
 
@@ -83,7 +84,8 @@ this.ckan.module('daterangepicker-module', function($, _) {
 				startDate: startDate ? moment(startDate) : this.options.startDate,
                 endDate: endDate ? moment(endDate) : this.options.endDate,				
                 showDropdowns: this.options.showDropdowns,
-                timePicker: this.options.timePicker
+                timePicker: this.options.timePicker,
+                timePicker12Hour: this.options.timePicker12Hour
             },
             function(start, end) {
 
