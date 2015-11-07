@@ -29,25 +29,25 @@ class DateSearchPlugin(plugins.SingletonPlugin):
         fq = '{fq} +(extras_temporal_extent_begin:[{start_date} TO {end_date}] OR extras_temporal_extent_end:[{start_date} TO {end_date}] OR extras_temporal_extent_instant:[{start_date} TO {end_date}])'.format(
             fq=fq, start_date=start_date, end_date=end_date)
         search_params['fq'] = fq
-		
-	    #log.info('search_params: %r', fq)
+
+        log.debug('search_params: %r', fq)
 		
         return search_params
-        
-    def before_index(self, pkg_dict):
-        # include the temporal extras in the main namespace
-        extras = pkg_dict.get('extras', [])
-        for extra in extras:
-            key, value = extra['key'], extra['value']
 
-            if key == 'temporal-extent-instant':
-                log.debug('...Creating index for temporal field: %s ', key)
-                pkg_dict['extras_' + 'temporal_extent_instant'] = value
-            elif key == 'temporal-extent-begin':
-                log.debug('...Creating index for temporal field: %s', key)
-                pkg_dict['extras_' + 'temporal-extent-begin'] = value
-            elif key == 'temporal-extent-end':
-                log.debug('...Creating index for temporal field: %s', key)
-                pkg_dict['extras_' + 'temporal-extent-end'] = value
+    def before_index(self, pkg_dict):
+        t_ext_inst = pkg_dict.get('extras_' + 'temporal-extent-instant')
+        if t_ext_inst:
+            log.info('...Creating index for temporal field: %s ', 'temporal-extent-instant')
+            pkg_dict['extras_' + 'temporal_extent_instant'] = t_ext_inst
+
+        t_ext_begin = pkg_dict.get('extras_' + 'temporal-extent-begin')
+        if t_ext_begin:
+            log.info('...Creating index for temporal field: %s', 'temporal-extent-begin')
+            pkg_dict['extras_' + 'temporal_extent_begin'] = t_ext_begin
+
+        t_ext_end = pkg_dict.get('extras_' + 'temporal-extent-end')
+        if t_ext_end:
+            log.info('...Creating index for temporal field: %s', 'temporal-extent-end')
+            pkg_dict['extras_' + 'temporal_extent_end'] = t_ext_end
 
         return pkg_dict
