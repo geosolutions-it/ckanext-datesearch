@@ -30,6 +30,24 @@ class DateSearchPlugin(plugins.SingletonPlugin):
             fq=fq, start_date=start_date, end_date=end_date)
         search_params['fq'] = fq
 		
-	#log.info('search_params: %r', fq)
+	    #log.info('search_params: %r', fq)
 		
         return search_params
+        
+    def before_index(self, pkg_dict):
+        # include the temporal extras in the main namespace
+        extras = pkg_dict.get('extras', [])
+        for extra in extras:
+            key, value = extra['key'], extra['value']
+
+            if key == 'temporal-extent-instant':
+                log.debug('...Creating index for temporal field: %s ', key)
+                pkg_dict['extras_' + 'temporal_extent_instant'] = value
+            elif key == 'temporal-extent-begin':
+                log.debug('...Creating index for temporal field: %s', key)
+                pkg_dict['extras_' + 'temporal-extent-begin'] = value
+            elif key == 'temporal-extent-end':
+                log.debug('...Creating index for temporal field: %s', key)
+                pkg_dict['extras_' + 'temporal-extent-end'] = value
+
+        return pkg_dict
